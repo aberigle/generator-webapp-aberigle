@@ -1,5 +1,3 @@
-'use strict'
-
 assert = require 'assert'
 
 describe 'webapp-aberigle generator', ->

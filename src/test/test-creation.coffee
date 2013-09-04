@@ -1,5 +1,3 @@
-'use strict'
-
 path    = require 'path'
 helpers = require 'helpers'
 

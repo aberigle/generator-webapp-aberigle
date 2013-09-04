@@ -1,5 +1,3 @@
-'use strict'
-
 path   = require 'path'
 yeoman = require 'yeoman-generator'
 
@@ -36,8 +34,7 @@ class WebappAberigleGenerator extends yeoman.generators.Base
     return
 
   app : ->
-    @mkdir 'app'
-    @mkdir 'app/templates'
+    @mkdir 'app'    
 
     @copy '_package.json', 'package.json'
     @copy '_bower.json', 'bower.json'
