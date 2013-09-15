@@ -22,26 +22,21 @@
     }
 
     WebappAberigleGenerator.prototype.askFor = function() {
-      var cb, prompts,
-        _this = this;
-      cb = this.async();
       console.log(this.yeoman);
-      prompts = [
-        {
-          type: 'confirm',
-          name: 'someOption',
-          message: 'Would you like to enable this option?',
-          "default": true
-        }
-      ];
-      this.prompt(prompts, function(props) {
-        _this.someOption = props.someOption;
-        cb();
-      });
+    };
+
+    WebappAberigleGenerator.prototype.gruntfile = function() {
+      this.copy('gruntfile.coffee', 'gruntfile.coffee');
     };
 
     WebappAberigleGenerator.prototype.app = function() {
       this.mkdir('app');
+      this.mkdir('src');
+      this.mkdir('src/coffee');
+      this.mkdir('src/stylus');
+      this.mkdir('src/jade');
+      this.copy('gitignore', '.gitignore');
+      this.copy('bowerrc', '.bowerrc');
       this.copy('_package.json', 'package.json');
       this.copy('_bower.json', 'bower.json');
     };

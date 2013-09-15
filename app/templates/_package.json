@@ -1,5 +1,22 @@
 {
   "name": "package",
   "version": "0.0.0",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies" : {
+    "grunt" : "",
+    "grunt-contrib-coffee" : "",
+    "grunt-contrib-stylus" : "",
+    "grunt-contrib-jade" : "",
+    "grunt-contrib-uglify" : "",
+    "grunt-contrib-concat" : "",
+    "grunt-contrib-watch" : "",
+    "grunt-contrib-copy" : "",
+    "load-grunt-tasks" : ""
+  }
 }
+
+
+
+
+
+

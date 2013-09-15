@@ -1,5 +1,5 @@
 path    = require 'path'
-helpers = require 'helpers'
+helpers = require('yeoman-generator').test
 
 describe 'webapp-aberigle generator', ->
   beforeEach (done) ->
@@ -8,6 +8,8 @@ describe 'webapp-aberigle generator', ->
 
        @app = helpers.createGenerator 'webapp-aberigle:app', ['../../app']
        do done
+       return 
+    return
 
   it 'creates expected files', (done) ->
     expected = [
@@ -22,4 +24,4 @@ describe 'webapp-aberigle generator', ->
     @app.run {}, ->
       helpers.assertFiles expected
       do done
-
+      return

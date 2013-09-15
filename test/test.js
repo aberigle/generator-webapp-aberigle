@@ -3,17 +3,17 @@
 
   path = require('path');
 
-  helpers = require('helpers');
+  helpers = require('yeoman-generator').test;
 
   describe('webapp-aberigle generator', function() {
     beforeEach(function(done) {
       var _this = this;
-      return helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
+      helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
         if (err) {
           return done(err);
         }
         _this.app = helpers.createGenerator('webapp-aberigle:app', ['../../app']);
-        return done();
+        done();
       });
     });
     return it('creates expected files', function(done) {
@@ -25,7 +25,7 @@
       this.app.options['skip-install'] = true;
       return this.app.run({}, function() {
         helpers.assertFiles(expected);
-        return done();
+        done();
       });
     });
   });

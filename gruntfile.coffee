@@ -1,4 +1,5 @@
 module.exports = (grunt) ->
+  require('load-grunt-tasks')(grunt)
   grunt.initConfig
     pkg: grunt.file.readJSON "package.json"
 
@@ -28,13 +29,13 @@ module.exports = (grunt) ->
         files:
           "test/test.js" : "<%=concat_src.test%>"
 
+    bgShell : 
+      mocha : 
+        cmd : 'mocha'
+
     watch : 
       main : 
         files : ["<%=src.app%>","<%=src.test%>"]
-        tasks : ["concat", "coffee"]
+        tasks : ["default"]
 
-  grunt.loadNpmTasks "grunt-contrib-coffee"
-  grunt.loadNpmTasks "grunt-contrib-concat"
-  grunt.loadNpmTasks "grunt-contrib-watch"
-
-  grunt.registerTask "default", ["concat", "coffee"]
+  grunt.registerTask "default", ["concat", "coffee", "bgShell:mocha"]
