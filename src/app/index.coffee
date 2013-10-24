@@ -44,6 +44,10 @@ class WebappAberigleGenerator extends yeoman.generators.Base
     @mkdir 'src/stylus'
     @mkdir 'src/jade'
 
+    @copy 'coffee/app.coffee' , 'src/coffee/app.coffee'
+    @copy 'stylus/app.styl'   , 'src/stylus/app.styl'
+    @copy 'jade/app.jade' , 'src/jade/app.jade'
+
     @copy 'gitignore', '.gitignore'
     @copy 'bowerrc', '.bowerrc'
     @copy '_package.json', 'package.json'
