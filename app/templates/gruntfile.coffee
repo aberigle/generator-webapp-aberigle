@@ -69,11 +69,5 @@ module.exports = (grunt) ->
       jade :
         files : ["<%=src.jade%>","<%=src.jade_files%>"]
         tasks : ["jade"]
-      dependencies :
-        files : ["<%=dependencies.js%>"]
-        tasks : ["concat"]
-      copy :
-        files : ["<%=dependencies.css.tuktuk%>/*"]
-        tasks : ["copy"]
-
+    
   grunt.registerTask "default", [ "stylus", "concat", "coffee", "uglify", "jade" ]
