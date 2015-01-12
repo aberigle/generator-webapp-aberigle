@@ -7,18 +7,19 @@
 
   describe('webapp-aberigle generator', function() {
     beforeEach(function(done) {
-      var _this = this;
-      helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
-        if (err) {
-          return done(err);
-        }
-        _this.app = helpers.createGenerator('webapp-aberigle:app', ['../../app']);
-        done();
-      });
+      helpers.testDirectory(path.join(__dirname, 'temp'), (function(_this) {
+        return function(err) {
+          if (err) {
+            return done(err);
+          }
+          _this.app = helpers.createGenerator('webapp-aberigle:app', ['../../app']);
+          done();
+        };
+      })(this));
     });
     return it('creates expected files', function(done) {
       var expected;
-      expected = ['.jshintrc', '.editorconfig'];
+      expected = [];
       helpers.mockPrompt(this.app, {
         'someOption': true
       });
