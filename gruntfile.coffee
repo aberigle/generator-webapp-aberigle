@@ -13,7 +13,7 @@ module.exports = (grunt) ->
       app  : ".tmp/app.coffee"
       test : ".tmp/test.coffee"
 
-    concat : 
+    concat :
       app :
         src  : "<%=src.app%>"
         dest : "<%=concat_src.app%>"
@@ -29,12 +29,12 @@ module.exports = (grunt) ->
         files:
           "test/test.js" : "<%=concat_src.test%>"
 
-    bgShell : 
-      mocha : 
+    bgShell :
+      mocha :
         cmd : 'mocha'
 
-    watch : 
-      main : 
+    watch :
+      main :
         files : ["<%=src.app%>","<%=src.test%>"]
         tasks : ["default"]
 
