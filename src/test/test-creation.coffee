@@ -4,18 +4,16 @@ helpers = require('yeoman-generator').test
 describe 'webapp-aberigle generator', ->
   beforeEach (done) ->
     helpers.testDirectory path.join(__dirname, 'temp'), (err) =>
-       if err then return done err
+      if err then return done err
 
-       @app = helpers.createGenerator 'webapp-aberigle:app', ['../../app']
-       do done
-       return 
+      @app = helpers.createGenerator 'webapp-aberigle:app', ['../../app']
+      done()
+      return
     return
 
   it 'creates expected files', (done) ->
     expected = [
       # add files you expect to exist here.
-      '.jshintrc',
-      '.editorconfig'
     ]
 
     helpers.mockPrompt @app, 'someOption' : true

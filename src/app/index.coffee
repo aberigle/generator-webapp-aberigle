@@ -9,16 +9,16 @@ class WebappAberigleGenerator extends yeoman.generators.Base
     @on 'end', ->
       @installDependencies skipInstall: options['skip-install']
       return
- 
+
     @pkg = JSON.parse @readFileAsString(path.join(__dirname, '../package.json'))
     return
 
-  askFor: -> 
+  askFor: ->
     # cb = do @async
 
     # # have Yeoman greet the user.
-    console.log @yeoman 
-    
+    console.log @yeoman
+
     # prompts = [
     #   type    : 'confirm'
     #   name    : 'someOption'
@@ -37,16 +37,12 @@ class WebappAberigleGenerator extends yeoman.generators.Base
     @copy 'gruntfile.coffee', 'gruntfile.coffee'
     return
 
-  app : -> 
-    @mkdir 'app'
+  app : ->
     @mkdir 'src'
-    @mkdir 'src/coffee'
-    @mkdir 'src/stylus'
-    @mkdir 'src/jade'
 
-    @copy 'coffee/app.coffee' , 'src/coffee/app.coffee'
-    @copy 'stylus/app.styl'   , 'src/stylus/app.styl'
-    @copy 'jade/app.jade' , 'src/jade/app.jade'
+    @directory 'coffee/' , 'src/coffee/'
+    @directory 'stylus/'   , 'src/stylus/'
+    @directory 'jade/' , 'src/jade/'
 
     @copy 'gitignore', '.gitignore'
     @copy 'bowerrc', '.bowerrc'
@@ -55,11 +51,7 @@ class WebappAberigleGenerator extends yeoman.generators.Base
     return
 
 
-  projectfiles : -> 
-    
-    @copy 'editorconfig', '.editorconfig'
-    @copy 'jshintrc', '.jshintrc'
+  projectfiles : ->
     return
 
 module.exports = WebappAberigleGenerator
-
