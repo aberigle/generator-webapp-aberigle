@@ -6,11 +6,11 @@ module.exports = (grunt) ->
       dest: 'app'
       static : 'app/static'
       banner: """
-      /*
-        <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("d/m/yyyy") %>
+/*
+  <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("d/m/yyyy") %>
 
-        Author: <%= pkg.author.name %> - <%= pkg.author.email %>
-      */
+  Author: <%= pkg.author.name %> - <%= pkg.author.email %>
+*/
 
       """
     src:
@@ -19,18 +19,23 @@ module.exports = (grunt) ->
         "src/coffee/*/*.coffee"]
       stylus : [
         "src/stylus/*.styl"]
-      jade   : [
-        "src/jade/app.jade"]
+      jade : "src/jade/web"
       jade_files : [
-        "src/jade/*.jade"]
+        "src/jade/**/*.jade"
+      ]
+
     jade :
       build:
         options:
-          data:
-            debug : true
-          pretty: true
-        files:
-          "<%=meta.dest%>/index.html" : "<%=src.jade%>"
+          data: debug: true
+          pretty : false
+        files : [
+          cwd    : "<%=src.jade%>"
+          src    : "**/*.jade"
+          dest   : "<%=meta.dest%>"
+          expand : true
+          ext    : ".html"
+        ]
 
     concat :
       coffee :
@@ -40,7 +45,7 @@ module.exports = (grunt) ->
     coffee:
       build:
         files:
-          '<%=meta.static%>/js/<%=pkg.name%>.debug.js' : '.tmp/coffee/tmp.coffee'
+          '<%=meta.static%>/js/<%=pkg.name%>.debug.js' :'.tmp/coffee/tmp.coffee'
 
     stylus:
       tmp:
@@ -54,7 +59,9 @@ module.exports = (grunt) ->
         banner: '<%= meta.banner %>'
       build:
         files:
-          '<%=meta.static%>/js/<%=pkg.name%>.js' : ['<%=meta.static%>/js/<%=pkg.name%>.debug.js']
+          '<%=meta.static%>/js/<%=pkg.name%>.js' : [
+            '<%=meta.static%>/js/<%=pkg.name%>.debug.js'
+          ]
 
     watch :
       main :
@@ -63,11 +70,23 @@ module.exports = (grunt) ->
       coffee :
         files : ["<%=src.coffee%>"]
         tasks : ["concat","coffee", "uglify"]
+        options :
+          livereload : true
       stylus :
         files : ["<%=src.stylus%>"]
         tasks : ["stylus"]
+        options :
+          livereload : true
       jade :
         files : ["<%=src.jade%>","<%=src.jade_files%>"]
         tasks : ["jade"]
-    
-  grunt.registerTask "default", [ "stylus", "concat", "coffee", "uglify", "jade" ]
+        options :
+          livereload : true
+
+  grunt.registerTask "default", [
+    "stylus"
+    "concat"
+    "coffee"
+    "uglify"
+    "jade"
+  ]
