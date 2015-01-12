@@ -30,24 +30,17 @@
     };
 
     WebappAberigleGenerator.prototype.app = function() {
-      this.mkdir('app');
       this.mkdir('src');
-      this.mkdir('src/coffee');
-      this.mkdir('src/stylus');
-      this.mkdir('src/jade');
-      this.copy('coffee/app.coffee', 'src/coffee/app.coffee');
-      this.copy('stylus/app.styl', 'src/stylus/app.styl');
-      this.copy('jade/app.jade', 'src/jade/app.jade');
+      this.directory('coffee/', 'src/coffee/');
+      this.directory('stylus/', 'src/stylus/');
+      this.directory('jade/', 'src/jade/');
       this.copy('gitignore', '.gitignore');
       this.copy('bowerrc', '.bowerrc');
       this.copy('_package.json', 'package.json');
       this.copy('_bower.json', 'bower.json');
     };
 
-    WebappAberigleGenerator.prototype.projectfiles = function() {
-      this.copy('editorconfig', '.editorconfig');
-      this.copy('jshintrc', '.jshintrc');
-    };
+    WebappAberigleGenerator.prototype.projectfiles = function() {};
 
     return WebappAberigleGenerator;
 
